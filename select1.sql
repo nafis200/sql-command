@@ -54,3 +54,5 @@ SELECT * from students
 SELECT * from students 
   where (country= 'USA' or country='Australia') AND age!=20
 
+
+

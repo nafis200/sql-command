@@ -75,8 +75,35 @@ SELECT * from students
  SELECT * from students 
  WHERE first_name ILIKE '%A';
 
-  
 
+--  Pagination with Limit Offest And Data Deletation
+
+  SELECT * from students LIMIT 3
+
+-- first 2 ta chara baki gulo daw
+
+ SELECT * from students LIMIT 3 OFFSET 2 
+
+-- pagination logic
+
+ SELECT * from students LIMIT 3 OFFSET 2 * 0
+
+--  delete data
+
+DELETE FROM students
+-- all data is remove from table
+
+DELETE FROM students
+  where grade ='B'
+
+SELECT * FROM students
+
+-- Update the coloumn
+
+
+UPDATE students
+   set email ='nafisahamed14@gmail.com'
+   where email='john.doe@example.com'
 
 
 

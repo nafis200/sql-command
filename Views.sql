@@ -128,3 +128,10 @@ SELECT * from deleted_user
 
 DELETE from person2 where person_id=5
 
+
+-- indexing 
+
+EXPLAIN ANALYSE 
+SELECT * from person2 WHERE person_id=10
+
+CREATE INDEX idx_person2_first_name on person2 (first_name)

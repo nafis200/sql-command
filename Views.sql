@@ -79,3 +79,52 @@ INSERT INTO person2 (first_name, last_name, user_age, dob) VALUES
 
 SELECT * from person2
 
+-- trigers 
+
+-- CREATE Table my_users(
+--   first_name VARCHAR(50),
+--   last_name VARCHAR(50),
+--   person_id INTEGER,
+--   user_age INTEGER,
+--   dob DATE
+-- )
+
+CREATE Table deleted_user(
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  person_id INTEGER,
+  user_age INTEGER,
+  dob DATE,
+  deletedAt TIMESTAMP
+)
+
+CREATE or REPLACE Function save_deleted_user()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+as 
+$$
+ BEGIN 
+  INSERT INTO deleted_user VALUES(OLD.first_name,OLD.last_name,OLD.person_id,OLD.user_age,OLD.dob,now());
+  RAISE NOTICE 'deleted_user adulit log created';
+  RETURN OLD;
+ END 
+$$
+
+CREATE or REPLACE Trigger save_delete_user_trigger
+BEFORE DELETE 
+on person2 
+FOR EACH ROW
+EXECUTE FUNCTION save_deleted_user();
+
+-- CREATE Trigger Tr 
+-- BEFORE DELETE 
+-- on person2
+-- for each row
+-- EXECUTE FUNCTION func_name()
+
+
+
+SELECT * from deleted_user
+
+DELETE from person2 where person_id=5
+

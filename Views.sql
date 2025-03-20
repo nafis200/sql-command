@@ -135,3 +135,5 @@ EXPLAIN ANALYSE
 SELECT * from person2 WHERE person_id=10
 
 CREATE INDEX idx_person2_first_name on person2 (first_name)
+
+SHOW data_directory
